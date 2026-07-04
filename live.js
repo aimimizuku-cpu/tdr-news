@@ -245,8 +245,10 @@ function renderDPA() {
   const data = liveState.data[liveState.park];
   const dpaLog = (liveState.today && liveState.today.dpa) || {};
   const items = data ? data.attractions.filter((a) => a.hasDPA) : [];
-  // 過去観測（当日）に売切記録がある施設も表示対象に含める
-  const logged = Object.values(dpaLog).filter((d) => d.park === liveState.park);
+  // 過去観測（当日）に売切記録がある施設も表示対象に含める（記録は英語名なので日本語化）
+  const logged = Object.values(dpaLog)
+    .filter((d) => d.park === liveState.park)
+    .map((d) => ({ ...d, name: jpName(d.name) }));
   for (const lg of logged) {
     if (!items.some((a) => a.name === lg.name)) items.push({ name: lg.name, hasDPA: true, dpaState: lg.state, wait: null, status: 'UNKNOWN' });
   }
