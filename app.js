@@ -533,7 +533,7 @@ function setupViewTabs() {
     tab.addEventListener('click', () => {
       const view = tab.dataset.view;
       tabs.forEach((t) => t.classList.toggle('active', t === tab));
-      for (const v of ['news', 'live', 'predict']) {
+      for (const v of ['news', 'live', 'predict', 'history']) {
         document.getElementById('view-' + v).hidden = v !== view;
       }
       // 施設タブと検索はニュースビュー専用
@@ -541,6 +541,7 @@ function setupViewTabs() {
       document.querySelector('.searchbox').style.display = view === 'news' ? '' : 'none';
       if (view === 'live' && typeof refreshLive === 'function') refreshLive();
       if (view === 'predict' && typeof buildPredictView === 'function') buildPredictView();
+      if (view === 'history' && typeof openHistoryView === 'function') openHistoryView();
     });
   });
 }

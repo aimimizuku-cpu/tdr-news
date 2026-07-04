@@ -651,6 +651,27 @@ button { font-family: var(--font-body); }
 .day-score-badge small { display: block; font-size: 10.5px; font-weight: 700; }
 .day-detail-meta { font-size: 12.5px; color: var(--ink-2); line-height: 1.9; }
 
+/* ===== 過去データビュー ===== */
+.date-input {
+  border: 1px solid var(--line-2); border-radius: 11px;
+  padding: 9px 13px; font-size: 13px; font-family: var(--font-body);
+  color: var(--ink); background: #fff; outline: none;
+}
+.date-input:focus { border-color: var(--teal); }
+.history-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+.attr-table { display: grid; gap: 2px; }
+.attr-table-head, .attr-table-row {
+  display: grid; grid-template-columns: minmax(0,1fr) 72px 72px;
+  gap: 10px; align-items: center; padding: 7px 10px;
+}
+.attr-table-head { font-size: 10.5px; font-weight: 700; color: var(--muted-2); border-bottom: 1px solid var(--line); }
+.attr-table-head span:not(:first-child), .attr-table-num { text-align: right; }
+.attr-table-row { border-radius: 9px; transition: background .15s; }
+.attr-table-row:hover { background: #fafbfc; }
+.attr-table-num { font-family: var(--font-round); font-weight: 800; font-size: 15px; }
+.attr-table-num small { font-size: 10px; font-weight: 700; color: var(--muted-2); margin-left: 1px; }
+.attr-table-avg { color: var(--ink-3); font-weight: 700; }
+
 /* ===== レスポンシブ ===== */
 @media (max-width: 1023px) {
   .layout { flex-direction: column; }

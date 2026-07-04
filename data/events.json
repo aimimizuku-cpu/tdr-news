@@ -1,15 +1,26 @@
 {
-  "_note": "予測モデルが参照するカレンダーデータ。estimated:true は公式未発表の推定日程。自由に編集・追記できます。",
-  "events": [
-    { "name": "七夕プログラム", "start": "2026-06-24", "end": "2026-07-07", "boost": 4, "estimated": true },
-    { "name": "夏イベント", "start": "2026-07-08", "end": "2026-09-15", "boost": 6, "estimated": true },
-    { "name": "東京ディズニーシー25周年イベント", "start": "2026-09-04", "end": "2027-03-31", "boost": 8, "estimated": true },
-    { "name": "ディズニー・ハロウィーン", "start": "2026-09-16", "end": "2026-10-31", "boost": 10, "estimated": true },
-    { "name": "ディズニー・クリスマス", "start": "2026-11-10", "end": "2026-12-25", "boost": 12, "estimated": true },
-    { "name": "お正月プログラム", "start": "2027-01-01", "end": "2027-01-11", "boost": 6, "estimated": true },
-    { "name": "春イベント", "start": "2027-04-01", "end": "2027-06-30", "boost": 4, "estimated": true }
+  "_note": "予測モデルが参照するカレンダーデータ。公式発表（tokyodisneyresort.jp のイベントページ・販売予定グッズページ）に基づく。park: tdl / tds / both。未発表の期間は追加しないこと（推定日程を入れると予測を誤らせるため）。",
+  "_sources": [
+    "https://www.tokyodisneyresort.jp/tdl/event.html",
+    "https://www.tokyodisneyresort.jp/tds/event.html",
+    "https://www.tokyodisneyresort.jp/tds/goods/comingsoon.html",
+    "https://dtimes.jp/post-1072340/"
   ],
-  "goods": [],
+  "events": [
+    { "name": "ヴァネロペのスウィーツ・ポップ・ワールド", "park": "tdl", "start": "2026-04-09", "end": "2026-06-30", "boost": 6 },
+    { "name": "東京ディズニーシー25周年“スパークリング・ジュビリー”", "park": "tds", "start": "2026-04-15", "end": "2027-03-31", "boost": 8 },
+    { "name": "フード＆ワイン・フェスティバル", "park": "tds", "start": "2026-04-15", "end": "2026-06-30", "boost": 4 },
+    { "name": "ファンタイム・ウィズ・トイ・ストーリー5", "park": "both", "start": "2026-07-02", "end": "2026-09-14", "boost": 5 },
+    { "name": "サマー・クールオフ at Tokyo Disney Resort", "park": "both", "start": "2026-07-02", "end": "2026-09-14", "boost": 5 },
+    { "name": "ディズニー・ハロウィーン", "park": "both", "start": "2026-09-16", "end": "2026-10-31", "boost": 10 },
+    { "name": "ラソス・デ・ラ・ファミリア", "park": "tds", "start": "2026-09-16", "end": "2026-11-02", "boost": 3 },
+    { "name": "ディズニー・クリスマス", "park": "both", "start": "2026-11-11", "end": "2026-12-25", "boost": 12 },
+    { "name": "お正月スペシャルイベント", "park": "both", "start": "2027-01-01", "end": "2027-01-11", "boost": 6 }
+  ],
+  "goods": [
+    { "name": "ベイマックス ポップコーンバケット", "park": "both", "date": "2026-07-01" },
+    { "name": "ダッフィー＆フレンズ「ワンダーズ・バイ・ユア・サイド」グッズ", "park": "tds", "date": "2026-07-07" }
+  ],
   "nearby": [
     { "name": "東京ゲームショウ（幕張メッセ）", "start": "2026-09-24", "end": "2026-09-27", "boost": 3, "estimated": true },
     { "name": "ジャンプフェスタ（幕張メッセ）", "start": "2026-12-19", "end": "2026-12-20", "boost": 3, "estimated": true },
