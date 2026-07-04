@@ -48,11 +48,137 @@
     </div>
   </div>
 
+  <nav class="view-tabs" id="view-tabs">
+    <button class="view-tab active" data-view="news">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0V6"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+      ニュース
+    </button>
+    <button class="view-tab" data-view="live">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+      待ち時間・混雑
+    </button>
+    <button class="view-tab" data-view="predict">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+      混雑予測AI
+    </button>
+  </nav>
+
   <div class="facility-tabs" id="facility-tabs"></div>
 </header>
 
 <main class="layout">
-  <section class="news-col">
+  <section id="view-live" class="news-col" hidden>
+    <div class="live-toolbar">
+      <div class="park-toggle" id="park-toggle">
+        <button class="park-btn active" data-park="tdl">東京ディズニーランド</button>
+        <button class="park-btn" data-park="tds">東京ディズニーシー</button>
+      </div>
+      <div class="live-updated" id="live-updated"></div>
+    </div>
+
+    <div class="stat-cards" id="stat-cards">
+      <div class="stat-card">
+        <div class="gauge-wrap"><canvas id="gauge-chart" width="150" height="150"></canvas>
+          <div class="gauge-center"><div class="gauge-score" id="gauge-score">--</div><div class="gauge-label" id="gauge-label">計測中</div></div>
+        </div>
+        <div class="stat-title">現在の混雑度</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-big" id="stat-avg">--<span class="stat-unit">分</span></div>
+        <div class="stat-title">平均待ち時間</div>
+        <div class="stat-sub" id="stat-avg-sub"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-big" id="stat-max">--<span class="stat-unit">分</span></div>
+        <div class="stat-title">最大待ち時間</div>
+        <div class="stat-sub" id="stat-max-sub"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-big stat-hours" id="stat-hours">--</div>
+        <div class="stat-title">本日の運営時間</div>
+        <div class="stat-sub" id="stat-weather"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3 class="panel-title">本日の混雑推移</h3>
+        <span class="panel-note">20分ごとに自動記録（平均待ち時間）</span>
+      </div>
+      <div class="chart-box"><canvas id="today-chart"></canvas></div>
+      <div class="panel-empty" id="today-chart-empty" hidden>本日の記録はまだありません。データは20分ごとに自動蓄積されます。</div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3 class="panel-title">ディズニー・プレミアアクセス（DPA）</h3>
+        <span class="panel-note">売切時刻は20分間隔の観測に基づく目安です</span>
+      </div>
+      <div class="dpa-list" id="dpa-list"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3 class="panel-title">アトラクション待ち時間</h3>
+        <span class="panel-note" id="attr-count"></span>
+      </div>
+      <div class="attr-list" id="attr-list"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3 class="panel-title">レストラン</h3>
+      </div>
+      <div class="panel-empty" id="restaurant-note">
+        レストランの待ち時間は公式アプリのみで提供されており、公開データからは取得できません。<br>
+        モバイルオーダー・プライオリティ・シーティングの空き状況は
+        <a href="https://reserve.tokyodisneyresort.jp/" target="_blank" rel="noopener">公式予約サイト</a> でご確認ください。
+      </div>
+    </div>
+  </section>
+
+  <section id="view-predict" class="news-col" hidden>
+    <div class="predict-hero">
+      <div class="predict-hero-badge">CROWD FORECAST AI</div>
+      <h2 class="predict-hero-title">今後1年間の混雑予測</h2>
+      <p class="predict-hero-desc">曜日・祝日・学校休暇・イベント開始/終了時期・天気予報・運営時間・アトラクション休止・周辺イベント（幕張メッセ等）を組み合わせた統計学習モデルで、365日分の混雑を予測。実測データが蓄積されるほど精度が向上します。</p>
+      <div class="predict-legend" id="predict-legend"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3 class="panel-title">直近7日間の予測 × 天気</h3>
+        <span class="panel-note">天気予報（Open-Meteo）を自動反映</span>
+      </div>
+      <div class="week-strip" id="week-strip"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3 class="panel-title">今後30日間の混雑スコア</h3>
+        <span class="panel-note">タップで日別の内訳を表示</span>
+      </div>
+      <div class="chart-box chart-box-tall"><canvas id="month-chart"></canvas></div>
+    </div>
+
+    <div class="panel" id="day-detail-panel" hidden>
+      <div class="panel-head">
+        <h3 class="panel-title" id="day-detail-title">日別詳細</h3>
+        <span class="panel-note">予測に影響した要因の内訳</span>
+      </div>
+      <div id="day-detail"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3 class="panel-title">年間混雑カレンダー</h3>
+        <span class="panel-note">日付をタップすると詳細を表示</span>
+      </div>
+      <div class="year-calendar" id="year-calendar"></div>
+    </div>
+  </section>
+
+  <section id="view-news" class="news-col">
     <div id="hero" class="hero" hidden></div>
 
     <div class="type-filters" id="type-filters"></div>
@@ -116,6 +242,9 @@
 
 <div id="toast" class="toast" hidden></div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <script src="app.js"></script>
+<script src="live.js"></script>
+<script src="predict.js"></script>
 </body>
 </html>

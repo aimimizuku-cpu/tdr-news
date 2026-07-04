@@ -1,0 +1,18 @@
+{
+  "_note": "予測モデルが参照するカレンダーデータ。estimated:true は公式未発表の推定日程。自由に編集・追記できます。",
+  "events": [
+    { "name": "七夕プログラム", "start": "2026-06-24", "end": "2026-07-07", "boost": 4, "estimated": true },
+    { "name": "夏イベント", "start": "2026-07-08", "end": "2026-09-15", "boost": 6, "estimated": true },
+    { "name": "東京ディズニーシー25周年イベント", "start": "2026-09-04", "end": "2027-03-31", "boost": 8, "estimated": true },
+    { "name": "ディズニー・ハロウィーン", "start": "2026-09-16", "end": "2026-10-31", "boost": 10, "estimated": true },
+    { "name": "ディズニー・クリスマス", "start": "2026-11-10", "end": "2026-12-25", "boost": 12, "estimated": true },
+    { "name": "お正月プログラム", "start": "2027-01-01", "end": "2027-01-11", "boost": 6, "estimated": true },
+    { "name": "春イベント", "start": "2027-04-01", "end": "2027-06-30", "boost": 4, "estimated": true }
+  ],
+  "goods": [],
+  "nearby": [
+    { "name": "東京ゲームショウ（幕張メッセ）", "start": "2026-09-24", "end": "2026-09-27", "boost": 3, "estimated": true },
+    { "name": "ジャンプフェスタ（幕張メッセ）", "start": "2026-12-19", "end": "2026-12-20", "boost": 3, "estimated": true },
+    { "name": "ワンダーフェスティバル（幕張メッセ）", "start": "2027-02-07", "end": "2027-02-07", "boost": 2, "estimated": true }
+  ]
+}
